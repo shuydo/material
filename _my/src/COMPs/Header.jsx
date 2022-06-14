@@ -1,9 +1,9 @@
-import { ShoppingBasket } from '@mui/icons-material';
-import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
+import { ShoppingBasket } from "@mui/icons-material";
+import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 
-import React from 'react';
+import React from "react";
 
-function Header() {
+function Header({ handleCart }) {
   return (
     <div>
       <AppBar position="static">
@@ -11,7 +11,7 @@ function Header() {
           <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
             MUI Shop
           </Typography>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleCart}>
             <ShoppingBasket />
           </IconButton>
         </Toolbar>

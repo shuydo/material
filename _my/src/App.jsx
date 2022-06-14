@@ -1,30 +1,32 @@
-import { useState } from 'react';
-import Container  from '@mui/material/Container';
+import { useState } from "react";
+import Container from "@mui/material/Container";
 
-import BasketList from './COMPs/BasketList';
-import GoodsList from './COMPs/GoodsList';
-import Header from './COMPs/Header';
-import Search from './COMPs/Search';
+import Basket from "./COMPs/Basket";
+import BasketList from "./COMPs/BasketList";
+import GoodsList from "./COMPs/GoodsList";
+import Header from "./COMPs/Header";
+import Search from "./COMPs/Search";
 
-import { goods } from './data/goods';
+import { goods } from "./data/goods";
 
 const App = () => {
   const [order, setOrder] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [products, setProducts] = useState(goods);
+  const [isCartOpen, setCartOpen] = useState(false);
 
   const handleChange = e => {
     if (!e.target.value) {
       setProducts(goods);
-      setSearch('');
+      setSearch("");
       return;
     }
 
     setSearch(e.target.value);
     setProducts(
       products.filter(good =>
-        good.name.toLowerCase().includes(e.target.value.toLowerCase()),
-      ),
+        good.name.toLowerCase().includes(e.target.value.toLowerCase())
+      )
     );
   };
 
@@ -46,7 +48,7 @@ const App = () => {
             price: item.price,
             quantity,
           };
-        }),
+        })
       );
     } else {
       setOrder([
@@ -67,12 +69,13 @@ const App = () => {
 
   return (
     <>
-      <Header />
-      <Container sx={{mt:"1rem"}}>
+      <Header handleCard={() => setCartOpen(true)} />
+      <Container sx={{ mt: "1rem" }}>
         <Search value={search} onChange={handleChange} />
         <GoodsList goods={products} setOrder={addToOrder} />
         <BasketList order={order} setOrder={removeFromOrder} />
       </Container>
+      <Basket cartOpen={isCartOpen} closeCart={() => setCartOpen(false)} />
     </>
   );
 };
