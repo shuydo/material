@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Button,
   Card,
@@ -13,7 +14,7 @@ const GoodsItem = props => {
 
   return (
     // <div className="col-12 col-md-6 px-md-2">
-    <Grid item xs={12} md={4} sx={{ outline: "1px solid" }} spaicing={2}>
+    <Grid item xs={12} md={3} /*sx={{ outline: "1px solid" }}*/ spaicing={2}>
       {/* {} or "" */}
       <Card sx={{height:'100%'}}>
         <CardMedia
